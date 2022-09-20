@@ -14,9 +14,9 @@ class CalculateFoodImpactRequest extends FormRequest
     public function rules()
     {
         return [
-            'organic_amount' => 'nullable|numeric|between:0,4',
-            'meat_amount' => 'nullable|numeric|between:0,4',
-            'locally_produced_amount' => 'nullable|numeric|between:0,4',
+            'organicAmount' => 'nullable|numeric|between:0,4',
+            'meatAmount' => 'nullable|numeric|between:0,4',
+            'locallyProducedAmount' => 'nullable|numeric|between:0,4',
         ];
     }
 }

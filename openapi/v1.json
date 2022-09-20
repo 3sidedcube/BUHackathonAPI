@@ -17,61 +17,47 @@
   ],
   "paths": {
     "/impact/travel": {
-        "post": {
+        "get": {
             "summary": "Calculate CO2 emissions for travel",
             "description": "Returns the total carbon footprint of travel mileage of different types (in a given year)",
-            "parameters": [],
-            "requestBody": {
-                "content": {
-                    "application/json": {
-                        "schema": {
-                            "type": "object",
-                            "properties": {
-                                "car": {
-                                    "type": "object",
-                                    "properties": {
-                                        "distance": {
-                                            "type": "number",
-                                            "description": "The distance travelled by car in miles",
-                                            "example": 2040
-                                        }
-                                    }
-                                },
-                                "train": {
-                                    "type": "object",
-                                    "properties": {
-                                        "distance": {
-                                            "type": "number",
-                                            "description": "The distance travelled by train in miles",
-                                            "example": 2040
-                                        }
-                                    }
-                                },
-                                "bus": {
-                                    "type": "object",
-                                    "properties": {
-                                        "distance": {
-                                            "type": "number",
-                                            "description": "The distance travelled by bus in miles",
-                                            "example": 2040
-                                        }
-                                    }
-                                },
-                                "plane": {
-                                    "type": "object",
-                                    "properties": {
-                                        "distance": {
-                                            "type": "number",
-                                            "description": "The distance travelled by plane in miles",
-                                            "example": 2040
-                                        }
-                                    }
-                                }
-                            }
-                        }
+            "parameters": [
+                {
+                    "in": "query",
+                    "name": "carDistance",
+                    "description": "The distance travelled by car in miles (average in a given year).",
+                    "schema": {
+                        "type": "number",
+                        "example": 3000
+                    }
+                },
+                {
+                    "in": "query",
+                    "name": "trainDistance",
+                    "description": "The distance travelled by train in miles (average over a year).",
+                    "schema": {
+                        "type": "number",
+                        "example": 5000
+                    }
+                },
+                {
+                    "in": "query",
+                    "name": "busDistance",
+                    "description": "The distance travelled by bus in miles (average over a year).",
+                    "schema": {
+                        "type": "number",
+                        "example": 6000
+                    }
+                },
+                {
+                    "in": "query",
+                    "name": "planeDistance",
+                    "description": "The distance travelled by plane in miles (average over a year.)",
+                    "schema": {
+                        "type": "number",
+                        "example": 3000
                     }
                 }
-            },
+            ],
             "responses": {
                 "200": {
                     "description": "OK",
@@ -87,38 +73,38 @@
         }
     },
     "/impact/household": {
-        "post": {
+        "get": {
             "summary": "Calculate CO2 emissions for a household (in a given year)",
             "description": "Returns the total carbon footprint of a household in a given year.",
-            "parameters": [],
-            "requestBody": {
-                "content": {
-                    "application/json": {
-                        "schema": {
-                            "type": "object",
-                            "properties": {
-                                "occupants": {
-                                    "type": "number",
-                                    "description": "The number of occupants in the household."
-                                },
-                                "energy_usage": {
-                                    "type": "number",
-                                    "description": "The amount of electricity used in the household in kWh (average over a year). Leave blank for UK average to be used."
-                                },
-                                "gas_usage": {
-                                    "type": "number",
-                                    "description": "The amount of gas used in the household in kWh (average over a year). Leave blank for UK average to be used."
-                                },
-                                "number_of_cars": {
-                                    "type": "number",
-                                    "description": "The number of cars in the household."
-                                },
-
-                            },
-                        }
+            "parameters": [
+                {
+                    "in": "query",
+                    "name": "occupants",
+                    "description": "The number of occupants in the household.",
+                    "schema": {
+                        "type": "number",
+                        "example": 3
+                    }
+                },
+                {
+                    "in": "query",
+                    "name": "energyUsage",
+                    "description": "The amount of electricity used in the household in kWh (average over a year). Leave blank for UK average to be used.",
+                    "schema": {
+                        "type": "number",
+                        "example": 5000
+                    }
+                },
+                {
+                    "in": "query",
+                    "name": "gasUsage",
+                    "description": "The amount of gas used in the household in kWh (average over a year). Leave blank for UK average to be used.",
+                    "schema": {
+                        "type": "number",
+                        "example": 6000
                     }
                 }
-            },
+            ],
             "responses": {
                 "200": {
                     "description": "OK",
@@ -137,38 +123,45 @@
         "get": {
             "summary": "Calculate CO2 emissions based on your food consumption (in a given year)",
             "description": "Returns the total carbon impact of your food consumption in a given year.",
-            "parameters": [],
-            "requestBody": {
-                "content": {
-                    "application/json": {
-                        "schema": {
-                            "type": "object",
-                            "properties": {
-                                "organic_food_amount": {
-                                    "type": "number",
-                                    "example": 3,
-                                    "description": "How much organic food you eat in a year (as a percentage of your diet). Number between 0 and 4 - (0 = 0%, 1 = 25%, 2 = 50%, 3 = 75%, 4 = 100%)."
-                                },
-                                "meat_dairy_amount": {
-                                    "type": "number",
-                                    "example": 3,
-                                    "description": "How much meat and dairy you eat in a year (as a percentage of your diet). Number between 0 and 4 - (0 = 0%, 1 = 25%, 2 = 50%, 3 = 75%, 4 = 100%)."
-                                },
-                                "locally_produced_amount": {
-                                    "type": "number",
-                                    "example": 3,
-                                    "description": "How much of your food is produced locally (as a percentage of your diet). Number between 0 and 4 - (0 = 0%, 1 = 25%, 2 = 50%, 3 = 75%, 4 = 100%)."
-                                },
-                                "waste_amount": {
-                                    "type": "number",
-                                    "example": 3,
-                                    "description": "How much food you waste in a year. Number between 0 and 4 - (0 = 0%, 1 = 25%, 2 = 50%, 3 = 75%, 4 = 100%)."
-                                },
-                            },
-                        }
+            "parameters": [
+                {
+
+                    "in": "query",
+                    "name": "organicFoodAmount",
+                    "description": "How much organic food you eat in a year (as a percentage of your diet). Number between 0 and 4 - (0 = 0%, 1 = 25%, 2 = 50%, 3 = 75%, 4 = 100%).",
+                    "schema": {
+                        "type": "number",
+                        "example": 3
+                    }
+                },
+                {
+                    "in": "query",
+                    "name": "meatDairyAmount",
+                    "description": "How much meat and dairy you eat in a year (as a percentage of your diet). Number between 0 and 4 - (0 = 0%, 1 = 25%, 2 = 50%, 3 = 75%, 4 = 100%).",
+                    "schema": {
+                        "type": "number",
+                        "example": 2
+                    }
+                },
+                {
+                    "in": "query",
+                    "name": "locallyProducedAmount",
+                    "description": "How much of your food is produced locally (as a percentage of your diet). Number between 0 and 4 - (0 = 0%, 1 = 25%, 2 = 50%, 3 = 75%, 4 = 100%).",
+                    "schema": {
+                        "type": "number",
+                        "example": 4
+                    }
+                },
+                {
+                    "in": "query",
+                    "name": "wasteAmount",
+                    "description": "How much food you waste in a year. Number between 0 and 4 - (0 = None, 1 = A little bit, 2 = Often, 3 = Most of the time, 4 = All of the time).",
+                    "schema": {
+                        "type": "number",
+                        "example": 1
                     }
                 }
-            },
+            ],
             "responses": {
                 "200": {
                     "description": "OK",

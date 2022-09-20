@@ -11,10 +11,10 @@ class CalculateTravelImpactController extends Controller
     public function __invoke(CalculateTravelImpactRequest $request)
     {
         // Set values to zero if they aren't defined
-        $trainDistance = $request->input('train.distance') ?? 0;
-        $carDistance = $request->input('car.distance') ?? 0;
-        $busDistance = $request->input('bus.distance') ?? 0;
-        $planeDistance = $request->input('plane.distance') ?? 0;
+        $trainDistance = $request->input('trainDistance') ?? 0;
+        $carDistance = $request->input('carDistance') ?? 0;
+        $busDistance = $request->input('busDistance') ?? 0;
+        $planeDistance = $request->input('planeDistance') ?? 0;
 
         // Calculate CO2 for each transport type
         $trainCO2 = round($trainDistance * 0.05945, 2);

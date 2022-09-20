@@ -15,9 +15,8 @@ class CalculateHouseholdImpactRequest extends FormRequest
     {
         return [
             'occupants' => 'required|numeric',
-            'energy_usage' => 'nullable|numeric',
-            'gas_usage' => 'nullable|numeric',
-            'number_of_cars' => 'nullable|numeric',
+            'energyUsage' => 'nullable|numeric',
+            'gasUsage' => 'nullable|numeric',
         ];
     }
 }

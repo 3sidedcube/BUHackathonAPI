@@ -14,10 +14,10 @@ class CalculateTravelImpactRequest extends FormRequest
     public function rules()
     {
         return [
-            'train.distance' => 'nullable|numeric',
-            'car.distance' => 'nullable|numeric',
-            'bus.distance' => 'nullable|numeric',
-            'plane.distance' => 'nullable|numeric',
+            'trainDistance' => 'nullable|numeric',
+            'carDistance' => 'nullable|numeric',
+            'busDistance' => 'nullable|numeric',
+            'planeDistance' => 'nullable|numeric',
         ];
     }
 }
