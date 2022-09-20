@@ -1,18 +1,18 @@
 {
   "openapi": "3.0.0",
   "info": {
-    "title": ":project_name",
+    "title": "Bournemouth University Hackathon API",
     "version": "1.0",
     "contact": {
       "name": "3 Sided Cube",
       "url": "https://3sidedcube.com",
       "email": "server@3sidedcube.com"
     },
-    "description": "### About\n\nThe Open API documentation for the :project_name API."
+    "description": "### About\n\nThe Open API documentation for the Bournemouth University Hackathon API."
   },
   "servers": [
     {
-      "url": ":server_url/v1"
+      "url": "https://bu-hackathon-api.herokuapp.com/api/v1"
     }
   ],
   "paths": {
