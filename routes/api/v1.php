@@ -1,8 +1,10 @@
 <?php
 
-use App\Http\Controllers\Household\CalculateHouseholdCO2Controller;
-use App\Http\Controllers\Travel\CalculateTravelCO2Controller;
+use App\Http\Controllers\Impact\CalculateFoodImpactController;
+use App\Http\Controllers\Impact\CalculateHouseholdImpactController;
+use App\Http\Controllers\Impact\CalculateTravelImpactController;
 use Illuminate\Support\Facades\Route;
 
-Route::post('/co2/household', CalculateHouseholdCO2Controller::class);
-Route::post('/co2/travel', CalculateTravelCO2Controller::class);
+Route::post('/impact/food', CalculateFoodImpactController::class)->name('impact.food');
+Route::post('/impact/household', CalculateHouseholdImpactController::class)->name('impact.household');
+Route::post('/impact/travel', CalculateTravelImpactController::class)->name('impact.travel');

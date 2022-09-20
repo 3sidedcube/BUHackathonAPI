@@ -1,15 +1,15 @@
 <?php
 
-namespace App\Http\Resources\Travel;
+namespace App\Http\Resources\Impact;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class TravelCO2Response extends JsonResource
+class TravelImpactResponse extends JsonResource
 {
     public function toArray($request)
     {
         return [
-            'type' => 'TravelCO2Response',
+            'type' => 'TravelImpactResponse',
             'attributes' => [
                 'train' => [
                     'distance' => $this->trainDistance,
@@ -27,7 +27,7 @@ class TravelCO2Response extends JsonResource
                     'distance' => $this->planeDistance,
                     'co2' => $this->planeCO2,
                 ],
-                'total' => $this->totalCO2,
+                'total_emissions' => $this->totalCO2,
             ],
         ];
     }

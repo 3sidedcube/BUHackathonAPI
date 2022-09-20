@@ -1,15 +1,15 @@
 <?php
 
-namespace App\Http\Resources\Household;
+namespace App\Http\Resources\Impact;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class HouseholdCO2Response extends JsonResource
+class HouseholdImpactResponse extends JsonResource
 {
     public function toArray($request)
     {
         return [
-            'type' => 'HouseholdCO2Response',
+            'type' => 'HouseholdImpactResponse',
             'attributes' => [
                 'occupants' => $this->occupants,
                 'energy' => [
@@ -20,7 +20,7 @@ class HouseholdCO2Response extends JsonResource
                     'usage' => $this->gas->usage,
                     'emissions' => $this->gas->emissions,
                 ],
-                'total' => round($this->energy->emissions + $this->gas->emissions, 2),
+                'total_emissions' => round($this->energy->emissions + $this->gas->emissions, 2),
             ],
         ];
     }

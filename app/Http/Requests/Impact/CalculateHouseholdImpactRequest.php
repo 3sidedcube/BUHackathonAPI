@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests\Household;
+namespace App\Http\Requests\Impact;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class CalculateHouseholdCO2Request extends FormRequest
+class CalculateHouseholdImpactRequest extends FormRequest
 {
     public function authorize()
     {

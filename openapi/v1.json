@@ -16,10 +16,10 @@
     }
   ],
   "paths": {
-    "/co2/travel": {
-        "get": {
-            "summary": "Get CO2 emissions for travel",
-            "description": "Returns the total carbon footprint of travel mileage of different types.",
+    "/impact/travel": {
+        "post": {
+            "summary": "Calculate CO2 emissions for travel",
+            "description": "Returns the total carbon footprint of travel mileage of different types (in a given year)",
             "parameters": [],
             "requestBody": {
                 "content": {
@@ -28,20 +28,44 @@
                             "type": "object",
                             "properties": {
                                 "car": {
-                                    "type": "number",
-                                    "description": "The distance travelled by car in miles."
+                                    "type": "object",
+                                    "properties": {
+                                        "distance": {
+                                            "type": "number",
+                                            "description": "The distance travelled by car in miles",
+                                            "example": 2040
+                                        }
+                                    }
                                 },
                                 "train": {
-                                    "type": "number",
-                                    "description": "The distance travelled by train in miles."
+                                    "type": "object",
+                                    "properties": {
+                                        "distance": {
+                                            "type": "number",
+                                            "description": "The distance travelled by train in miles",
+                                            "example": 2040
+                                        }
+                                    }
                                 },
                                 "bus": {
-                                    "type": "number",
-                                    "description": "The distance travelled by bus in miles."
+                                    "type": "object",
+                                    "properties": {
+                                        "distance": {
+                                            "type": "number",
+                                            "description": "The distance travelled by bus in miles",
+                                            "example": 2040
+                                        }
+                                    }
                                 },
                                 "plane": {
-                                    "type": "number",
-                                    "description": "The distance travelled by plane in miles."
+                                    "type": "object",
+                                    "properties": {
+                                        "distance": {
+                                            "type": "number",
+                                            "description": "The distance travelled by plane in miles",
+                                            "example": 2040
+                                        }
+                                    }
                                 }
                             }
                         }
@@ -50,14 +74,21 @@
             },
             "responses": {
                 "200": {
-                    "description": "OK"
+                    "description": "OK",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/TravelImpactResponse"
+                            }
+                        }
+                    }
                 }
             }
         }
     },
-    "/co2/household": {
-        "get": {
-            "summary": "Get CO2 emissions for a household (in a given year)",
+    "/impact/household": {
+        "post": {
+            "summary": "Calculate CO2 emissions for a household (in a given year)",
             "description": "Returns the total carbon footprint of a household in a given year.",
             "parameters": [],
             "requestBody": {
@@ -90,14 +121,21 @@
             },
             "responses": {
                 "200": {
-                    "description": "OK"
+                    "description": "OK",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/HouseholdImpactResponse"
+                            }
+                        }
+                    }
                 }
             }
         }
     },
-    "/co2/food": {
+    "/impact/food": {
         "get": {
-            "summary": "Get CO2 emissions based on your food consumption (in a given year)",
+            "summary": "Calculate CO2 emissions based on your food consumption (in a given year)",
             "description": "Returns the total carbon impact of your food consumption in a given year.",
             "parameters": [],
             "requestBody": {
@@ -108,31 +146,39 @@
                             "properties": {
                                 "organic_food_amount": {
                                     "type": "number",
-                                    "description": "How much organic food you eat in a year. Number between 1 and 4 - (1 = 0%, 2 = 33%, 3 = 66%, 4 = 100%)."
+                                    "example": 3,
+                                    "description": "How much organic food you eat in a year (as a percentage of your diet). Number between 0 and 4 - (0 = 0%, 1 = 25%, 2 = 50%, 3 = 75%, 4 = 100%)."
                                 },
                                 "meat_dairy_amount": {
                                     "type": "number",
-                                    "description": "How much meat and dairy you eat in a year. Number between 1 and 4 - (1 = 0%, 2 = 33%, 3 = 66%, 4 = 100%)."
+                                    "example": 3,
+                                    "description": "How much meat and dairy you eat in a year (as a percentage of your diet). Number between 0 and 4 - (0 = 0%, 1 = 25%, 2 = 50%, 3 = 75%, 4 = 100%)."
                                 },
                                 "locally_produced_amount": {
                                     "type": "number",
-                                    "description": "How much of your food is produced locally. Number between 1 and 4 - (1 = 0%, 2 = 33%, 3 = 66%, 4 = 100%)."
+                                    "example": 3,
+                                    "description": "How much of your food is produced locally (as a percentage of your diet). Number between 0 and 4 - (0 = 0%, 1 = 25%, 2 = 50%, 3 = 75%, 4 = 100%)."
                                 },
                                 "waste_amount": {
                                     "type": "number",
-                                    "description": "How much food you waste in a year. Number between 1 and 4 - (1 = 0%, 2 = 33%, 3 = 66%, 4 = 100%)."
+                                    "example": 3,
+                                    "description": "How much food you waste in a year. Number between 0 and 4 - (0 = 0%, 1 = 25%, 2 = 50%, 3 = 75%, 4 = 100%)."
                                 },
                             },
-                            "required": [
-                                "distance"
-                            ]
                         }
                     }
                 }
             },
             "responses": {
                 "200": {
-                    "description": "OK"
+                    "description": "OK",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/FoodImpactResponse"
+                            }
+                        }
+                    }
                 }
             }
         }
@@ -140,6 +186,183 @@
   },
   "components": {
     "schemas": {
+      "FoodImpactResponse": {
+        "title": "FoodImpactResponse",
+        "description": "The response from the food impact endpoint",
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "description": "The type of response",
+            "example": "FoodImpactResponse"
+          },
+          "attributes": {
+            "type": "object",
+            "properties": {
+                "organic_food": {
+                    "type": "object",
+                    "properties": {
+                        "emissions": {
+                            "type": "number",
+                            "description": "The amount of CO2 emissions in kg",
+                            "example": 2040
+                        },
+                    }
+                },
+                "meat": {
+                    "type": "object",
+                    "properties": {
+                        "emissions": {
+                            "type": "number",
+                            "description": "The amount of CO2 emissions in kg",
+                            "example": 2040
+                        },
+                    }
+                },
+                "locally_produced": {
+                    "type": "object",
+                    "properties": {
+                        "emissions": {
+                            "type": "number",
+                            "description": "The amount of CO2 emissions in kg",
+                            "example": 2040
+                        },
+                    }
+                },
+                "total_emissions": {
+                    "type": "number",
+                    "description": "The total amount of CO2 emissions in kg",
+                    "example": 10000
+                }
+            }
+          }
+        }
+      },
+      "HouseholdImpactResponse": {
+        "title": "HouseholdImpactResponse",
+        "description": "The response from the household impact endpoint",
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "description": "The type of response",
+            "example": "HouseholdImpactResponse"
+          },
+          "attributes": {
+            "type": "object",
+            "properties": {
+                "energy": {
+                    "type": "object",
+                    "properties": {
+                        "usage": {
+                            "type": "number",
+                            "description": "The amount of electricity used in the household in kWh (average over a year).",
+                            "example": 2040
+                        },
+                        "emissions": {
+                            "type": "number",
+                            "description": "The amount of CO2 emissions in kg",
+                            "example": 2040
+                        },
+                    }
+                },
+                "gas": {
+                    "type": "object",
+                    "properties": {
+                        "usage": {
+                            "type": "number",
+                            "description": "The amount of gas used in the household in kWh (average over a year).",
+                            "example": 2040
+                        },
+                        "emissions": {
+                            "type": "number",
+                            "description": "The amount of CO2 emissions in kg",
+                            "example": 2040
+                        },
+                    }
+                },
+                "total_emissions": {
+                    "type": "number",
+                    "description": "The total amount of CO2 emissions in kg",
+                    "example": 10000
+                }
+            }
+          }
+        }
+      },
+      "TravelImpactResponse": {
+        "title": "TravelImpactResponse",
+        "description": "The response from the travel impact endpoint.",
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "description": "The type of resource.",
+            "example": "TravelImpactResponse"
+          },
+          "attributes": {
+            "type": "object",
+            "properties": {
+              "car": {
+                "type": "object",
+                "properties": {
+                    "distance": {
+                        "type": "number",
+                        "description": "The distance travelled by car in miles."
+                    },
+                    "co2": {
+                        "type": "number",
+                        "description": "The CO2 emissions from car travel in kg."
+                    }
+                }
+              },
+              "train": {
+                "type": "object",
+                "properties": {
+                    "distance": {
+                        "type": "number",
+                        "description": "The distance travelled by train in miles."
+                    },
+                    "co2": {
+                        "type": "number",
+                        "description": "The CO2 emissions from train travel in kg."
+                    }
+                }
+              },
+              "bus": {
+                "type": "object",
+                "properties": {
+                    "distance": {
+                        "type": "number",
+                        "description": "The distance travelled by bus in miles."
+                    },
+                    "co2": {
+                        "type": "number",
+                        "description": "The CO2 emissions from bus travel in kg."
+                    }
+                }
+              },
+              "plane": {
+                "type": "object",
+                "properties": {
+                    "distance": {
+                        "type": "number",
+                        "description": "The distance travelled by plane in miles."
+                    },
+                    "co2": {
+                        "type": "number",
+                        "description": "The CO2 emissions from plane travel in kg."
+                    }
+                }
+              },
+              "total_emissions": {
+                "type": "number",
+                "description": "The total CO2 emissions from travel in kg."
+              }
+            }
+          }
+        }
+      },
       "ValidationError": {
         "title": "ValidationError",
         "type": "object",

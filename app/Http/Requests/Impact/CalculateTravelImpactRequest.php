@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests\Travel;
+namespace App\Http\Requests\Impact;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class CalculateTravelCO2Request extends FormRequest
+class CalculateTravelImpactRequest extends FormRequest
 {
     public function authorize()
     {

@@ -1,14 +1,14 @@
 <?php
 
-namespace App\Http\Controllers\Travel;
+namespace App\Http\Controllers\Impact;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Travel\CalculateTravelCO2Request;
-use App\Http\Resources\Travel\TravelCO2Response;
+use App\Http\Requests\Impact\CalculateTravelImpactRequest;
+use App\Http\Resources\Impact\TravelImpactResponse;
 
-class CalculateTravelCO2Controller extends Controller
+class CalculateTravelImpactController extends Controller
 {
-    public function __invoke(CalculateTravelCO2Request $request)
+    public function __invoke(CalculateTravelImpactRequest $request)
     {
         // Set values to zero if they aren't defined
         $trainDistance = $request->input('train.distance') ?? 0;
@@ -23,7 +23,7 @@ class CalculateTravelCO2Controller extends Controller
         $planeCO2 = round($planeDistance * 24.0404, 2);
 
         // Return JSON response with CO2 values
-        return new TravelCO2Response((object) [
+        return new TravelImpactResponse((object) [
             'trainDistance' => $trainDistance,
             'carDistance' => $carDistance,
             'busDistance' => $busDistance,

@@ -1,14 +1,14 @@
 <?php
 
-namespace App\Http\Controllers\Household;
+namespace App\Http\Controllers\Impact;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Household\CalculateHouseholdCO2Request;
-use App\Http\Resources\Household\HouseholdCO2Response;
+use App\Http\Requests\Impact\CalculateHouseholdImpactRequest;
+use App\Http\Resources\Impact\HouseholdImpactResponse;
 
-class CalculateHouseholdCO2Controller extends Controller
+class CalculateHouseholdImpactController extends Controller
 {
-    public function __invoke(CalculateHouseholdCO2Request $request)
+    public function __invoke(CalculateHouseholdImpactRequest $request)
     {
         // Set values to UK averages if they aren't defined
         $occupants = $request->input('occupants'); // Is required, so no default value
@@ -22,7 +22,7 @@ class CalculateHouseholdCO2Controller extends Controller
         $gasEmissions = round($gasUsage * 0.203, 2);
 
         // Return JSON response with CO2 values
-        return new HouseholdCO2Response((object) [
+        return new HouseholdImpactResponse((object) [
             'occupants' => $occupants,
             'energy' => (object) [
                 'usage' => $energyUsage,
