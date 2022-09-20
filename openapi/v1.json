@@ -1,5 +1,5 @@
 {
-  "openapi": "3.1.0",
+  "openapi": "3.0.0",
   "info": {
     "title": ":project_name",
     "version": "1.0",
@@ -15,7 +15,129 @@
       "url": ":server_url/v1"
     }
   ],
-  "paths": {},
+  "paths": {
+    "/co2/travel": {
+        "get": {
+            "summary": "Get CO2 emissions for travel",
+            "description": "Returns the total carbon footprint of travel mileage of different types.",
+            "parameters": [],
+            "requestBody": {
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "car": {
+                                    "type": "number",
+                                    "description": "The distance travelled by car in miles."
+                                },
+                                "train": {
+                                    "type": "number",
+                                    "description": "The distance travelled by train in miles."
+                                },
+                                "bus": {
+                                    "type": "number",
+                                    "description": "The distance travelled by bus in miles."
+                                },
+                                "plane": {
+                                    "type": "number",
+                                    "description": "The distance travelled by plane in miles."
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "responses": {
+                "200": {
+                    "description": "OK"
+                }
+            }
+        }
+    },
+    "/co2/household": {
+        "get": {
+            "summary": "Get CO2 emissions for a household (in a given year)",
+            "description": "Returns the total carbon footprint of a household in a given year.",
+            "parameters": [],
+            "requestBody": {
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "occupants": {
+                                    "type": "number",
+                                    "description": "The number of occupants in the household."
+                                },
+                                "energy_usage": {
+                                    "type": "number",
+                                    "description": "The amount of electricity used in the household in kWh (average over a year). Leave blank for UK average to be used."
+                                },
+                                "gas_usage": {
+                                    "type": "number",
+                                    "description": "The amount of gas used in the household in kWh (average over a year). Leave blank for UK average to be used."
+                                },
+                                "number_of_cars": {
+                                    "type": "number",
+                                    "description": "The number of cars in the household."
+                                },
+
+                            },
+                        }
+                    }
+                }
+            },
+            "responses": {
+                "200": {
+                    "description": "OK"
+                }
+            }
+        }
+    },
+    "/co2/food": {
+        "get": {
+            "summary": "Get CO2 emissions based on your food consumption (in a given year)",
+            "description": "Returns the total carbon impact of your food consumption in a given year.",
+            "parameters": [],
+            "requestBody": {
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "organic_food_amount": {
+                                    "type": "number",
+                                    "description": "How much organic food you eat in a year. Number between 1 and 4 - (1 = 0%, 2 = 33%, 3 = 66%, 4 = 100%)."
+                                },
+                                "meat_dairy_amount": {
+                                    "type": "number",
+                                    "description": "How much meat and dairy you eat in a year. Number between 1 and 4 - (1 = 0%, 2 = 33%, 3 = 66%, 4 = 100%)."
+                                },
+                                "locally_produced_amount": {
+                                    "type": "number",
+                                    "description": "How much of your food is produced locally. Number between 1 and 4 - (1 = 0%, 2 = 33%, 3 = 66%, 4 = 100%)."
+                                },
+                                "waste_amount": {
+                                    "type": "number",
+                                    "description": "How much food you waste in a year. Number between 1 and 4 - (1 = 0%, 2 = 33%, 3 = 66%, 4 = 100%)."
+                                },
+                            },
+                            "required": [
+                                "distance"
+                            ]
+                        }
+                    }
+                }
+            },
+            "responses": {
+                "200": {
+                    "description": "OK"
+                }
+            }
+        }
+    }
+  },
   "components": {
     "schemas": {
       "ValidationError": {
