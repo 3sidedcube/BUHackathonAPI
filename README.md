@@ -4,70 +4,11 @@
     </a>
 </p>
 
-# :project_name
-
-<!--delete-->
----
-This repository can be used to scaffold new Laravel APIs. Follow these steps to get started: 
-
-1. Run the following command in your terminal:
-```shell
-composer create-project 3sidedcube/laravel-api-template project-name -s dev
-```
-2. Next configure your Laravel services by running:
-```shell
-php artisan sail:install
-```
-3. Update the `bitbucket-pipelines.yml` file to use any additional services 
-4. Ensure that the provisioning and deployment information is correct
-5. Create a Backend API confluence page on the project space for writing helpful documentation (remember to update the README)
-6. Replace any references to project_name with your project name. You will need to update the following files:
-   1. `composer.json` (name)
-   2. README.md (title)
-   3. Environment variables (`.env`, `.env.example`, `.env.pipelines`)
-   4. OpenAPI (`v1.json`)
-   5. Changelog
-7. Update the environment information below with the correct URLs
----
-<!--/delete-->
-
-This is where your description should go. Limit it to a paragraph or two.
+# BU Hackathon Impact API
 
 ## Environments
 
-There are several environments available for this project.
-
-### Production
-
-[https://project-api.com](https://project-api.com)
-
-This environment should only be used for production builds. Changes to the API should have been tested before they are
-deployed to this environment.
-
-### Staging
-
-[https://project-api.com](https://project-api.com)
-
-Once the API has completed internal testing, it should be deployed to this environment. This will then be used by the
-client during UAT.
-
-> Note: Please ensure that UAT always used this environment so that bug fixes and changes can be deployed to test
-> whilst UAT is ongoing.
-
-### Test
-
-[https://project-api.com](https://project-api.com)
-
-The test environment should be used for testing the API internally All mobile builds that are built for the testing
-team should also point at this environment.
-
-### Development
-
-[https://project-api.com](https://project-api.com)
-
-This environment is available for mobile developers or frontend developers to use when developing new features locally.
-It is helpful to have the environment so that developers can fix any breaking changes before the API changes get
-deployed to the test environment.
+The main environment can be found at [https://bu-hackathon-api.herokuapp.com/api/v1](https://bu-hackathon-api.herokuapp.com/api/v1)
 
 ## Local Development
 
@@ -115,30 +56,10 @@ docker run --rm \
 ./vendor/bin/sail up -d
 ```
 
-### Gotchas
-
-Here are some helpful tips if you are having issues with this project:
-
-## Provisioning
-
-Server provisioning is handled by [Laravel Forge](https://forge.laravel.com).
-
 ## Deployments
 
-To deploy this project, login to [Envoyer](https://envoyer.io) and click deploy on the corresponding project.
+The API is deployed using a free Heroku dyno. You can use Heroku or a similar service to deploy your own API at zero cost.
 
 ## Documentation
 
-All documentation can be found under the following [page]() in confluence.
-
-## Logging
-
-We use [Sentry](https://sentry.io) for keeping track of logs across the various environments.
-
-## Tests
-
-You can run the full test suite by running the following command:
-
-```shell
-make test
-```
+The documentation for the API can be found [here](https://bu-hackathon-api.herokuapp.com/api/v1/docs)
