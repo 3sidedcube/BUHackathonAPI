@@ -18,8 +18,8 @@
   "paths": {
     "/impact/travel": {
         "get": {
-            "summary": "Calculate CO2 emissions for travel",
-            "description": "Returns the total carbon footprint of travel mileage of different types (in a given year)",
+            "summary": "Calculate CO2 emissions for travel (in a given year)",
+            "description": "Returns the total carbon footprint (in kg CO2) of travel mileage of different types (in a given year)",
             "parameters": [
                 {
                     "in": "query",
@@ -75,7 +75,7 @@
     "/impact/household": {
         "get": {
             "summary": "Calculate CO2 emissions for a household (in a given year)",
-            "description": "Returns the total carbon footprint of a household in a given year.",
+            "description": "Returns the total carbon footprint (in kg CO2) of a household in a given year.",
             "parameters": [
                 {
                     "in": "query",
@@ -122,7 +122,7 @@
     "/impact/food": {
         "get": {
             "summary": "Calculate CO2 emissions based on your food consumption (in a given year)",
-            "description": "Returns the total carbon impact of your food consumption in a given year.",
+            "description": "Returns the total carbon impact (in kg CO2) of your food consumption in a given year.",
             "parameters": [
                 {
 
