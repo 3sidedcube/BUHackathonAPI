@@ -10,6 +10,12 @@
 
 The main environment can be found at [https://bu-hackathon-api.herokuapp.com/api/v1](https://bu-hackathon-api.herokuapp.com/api/v1)
 
+## Documentation
+
+The documentation for the API can be found [here](https://bu-hackathon-api.herokuapp.com/api/v1/docs).
+
+For a little background and some direction for using the API, you can read an introduction [here](https://bu-hackathon.cubeapis.com).
+
 ## Local Development
 
 This project uses Laravel Sail for local development which uses [Docker](https://www.docker.com/get-started). You will
@@ -58,8 +64,4 @@ docker run --rm \
 
 ## Deployments
 
-The API is deployed using a free Heroku dyno. You can use Heroku or a similar service to deploy your own API at zero cost.
-
-## Documentation
-
-The documentation for the API can be found [here](https://bu-hackathon-api.herokuapp.com/api/v1/docs)
+The API is deployed using a free Heroku dyno. You can use Heroku or a similar service to deploy your own API at zero cost (well, not Heroku because they're discontinuing free dynos in November although there will be other options - you can even host an API on a Raspberry PI!)
